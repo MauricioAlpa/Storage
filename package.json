@@ -1,0 +1,26 @@
+{
+  "name": "storage",
+  "version": "1.0.0",
+  "description": "A robust PostgreSQL-based system for real-time inventory tracking in a culinary environment.",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MauricioAlpa/Storage.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MauricioAlpa/Storage/issues"
+  },
+  "homepage": "https://github.com/MauricioAlpa/Storage#readme",
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "pg": "^8.20.0"
+  }
+}
