@@ -1,7 +1,7 @@
 import {db} from "../Config/database.js";
 
 export class IngredientesModels{
-    static async addIngrediente(dados){
+    static async criarIngrediente(dados){
         const query = `INSERT INTO ingredientes(nome, unidade, quantidade, quantidade_estoque, quantidade_min) 
         VALUES ($1, $2, $3, $4, $5)
         RETURNING id, nome, unidade, quantidade, quantidade_estoque, quantidade_min

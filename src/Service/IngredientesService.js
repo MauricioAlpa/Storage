@@ -14,6 +14,6 @@ export class IngredientesService{
             throw new Error("Ingrediente já cadastrado")
         }
 
-        return await IngredientesModels.addIngrediente(dados);
+        return await IngredientesModels.criarIngrediente(dados);
     }
 }
