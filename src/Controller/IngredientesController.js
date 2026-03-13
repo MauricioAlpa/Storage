@@ -3,7 +3,6 @@ import { IngredientesService } from "../Service/IngredientesService.js";
 export class IngredientesController {
     static async criarIngrediente(req, res){
 
-        console.log(req.body)
 
         const dados = req.body
 
