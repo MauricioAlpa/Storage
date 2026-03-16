@@ -1,29 +1,18 @@
 import { IngredientesService } from "../Service/IngredientesService.js";
+import { IngredientesModels } from "../Models/IngredientesModels.js";
+
 
 export class IngredientesController {
     static async criarIngrediente(req, res){
 
-
         const dados = req.body
 
         try{
-            const campos = [
-            "nome",
-            "unidade",
-            "quantidade",
-            "quantidade_estoque",
-            "quantidade_min"
-            ];
+            await IngredientesService.temIngrediente(dados)
 
-            const campoFaltando = campos.find(campo => dados[campo] == null);
+            const ingrediente = await IngredientesModels.criarIngrediente(dados)
 
-            if (campoFaltando) {
-                throw new Error(`Campo obrigatório: ${campoFaltando}`);
-            }
-
-            const newIngrediente = await IngredientesService.temIngrediente(dados);
-
-            return res.status(201).json(newIngrediente);
+            return res.status(201).json(ingrediente);
 
         }catch(error){
             return res.status(400).json({
@@ -31,4 +20,26 @@ export class IngredientesController {
             })
         }
     }
+
+    static async addQuantidade(req, res){
+        const dados = req.body;
+
+        try{
+            await IngredientesService.adicionarEstoque(dados);
+
+
+            await IngredientesModels.addQuantidadeEstoque(dados)
+
+            return res.status(200).json({
+                message: "Estoque atualizado"
+            });
+
+        }catch(error){
+            return res.status(400).json({
+                error: error.message
+            })
+        }
+    }
+
+    
 }
