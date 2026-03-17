@@ -72,4 +72,14 @@ export class Validacoes {
             .withMessage("ID deve ser um número inteiro")
         ]
     }
+
+    static validaLista(){
+        return [
+            param("nome")
+            .notEmpty()
+            .withMessage("Nome obrigatório")
+            .isString()
+            .withMessage("Nome deve ser uma string")
+        ]
+    }
 }

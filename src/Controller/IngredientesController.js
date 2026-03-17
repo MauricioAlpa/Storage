@@ -62,5 +62,27 @@ export class IngredientesController {
             })
         }
     }
+
+    static async listarIngredientes(req, res){
+        const nome = String(req.params.nome);
     
+        try{
+            const result = await IngredientesModels.listarIngredientesByName(nome)
+
+            console.log(result)
+
+            if(!result){
+                throw new Error("Ingrediente não existe")
+            }
+
+            return res.status(200).json({
+                id: result.id,
+                nome: result.nome
+            })
+        }catch(error){
+            return res.status(400).json({
+                error: error.message
+            })
+        }
+    }
 }
