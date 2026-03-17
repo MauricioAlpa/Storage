@@ -9,3 +9,4 @@ IngredientesRouter.post('/addIngrediente', Validacoes.validaCampos(), handleVali
 
 IngredientesRouter.patch('/atualizaQuantidade', Validacoes.validaEstoque(), handleValidation, IngredientesController.addQuantidade);
 
+IngredientesRouter.delete('/deletarAlimento/:id', Validacoes.validaDelete(), handleValidation, IngredientesController.deletaIngredienteById);

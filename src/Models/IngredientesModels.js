@@ -48,4 +48,19 @@ export class IngredientesModels{
 
         return result.rows[0];
     }
+
+    static async deletaIngrediente(id){
+        const query = 
+        `
+        DELETE FROM ingredientes
+        WHERE id = $1
+        RETURNING *
+        `;
+
+        const value = [id];
+
+        const result = await db.query(query,value)
+
+        return result;
+    }
 }

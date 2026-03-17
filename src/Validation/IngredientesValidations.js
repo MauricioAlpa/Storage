@@ -1,4 +1,4 @@
-import { body } from "express-validator";
+import { body, param } from "express-validator";
 
 export class Validacoes {
 
@@ -63,4 +63,13 @@ export class Validacoes {
         ]
     }
 
+    static validaDelete(){
+        return [
+            param("id")
+            .notEmpty()
+            .withMessage("ID obrigatório")
+            .isInt()
+            .withMessage("ID deve ser um número inteiro")
+        ]
+    }
 }

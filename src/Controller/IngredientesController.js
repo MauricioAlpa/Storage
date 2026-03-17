@@ -40,6 +40,27 @@ export class IngredientesController {
             })
         }
     }
+    
+    static async deletaIngredienteById(req, res){
+        const id = Number(req.params.id);
 
+        try{
+            const result = await IngredientesModels.deletaIngrediente(id);
+
+            if(result.rowCount === 0){
+                throw new Error("Ingrediente não encontrado.")
+            }
+
+            return res.status(200).json({
+                message: "Ingrediente deletado",
+                data: result.rows[0]
+            })
+
+        }catch(error){
+            return res.status(400).json({
+                error: error.message
+            })
+        }
+    }
     
 }
