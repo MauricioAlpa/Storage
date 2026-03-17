@@ -63,7 +63,7 @@ export class IngredientesController {
         }
     }
 
-    static async listarIngredientes(req, res){
+    static async listarIngredientesByName(req, res){
         const nome = String(req.params.nome);
     
         try{
@@ -82,6 +82,18 @@ export class IngredientesController {
         }catch(error){
             return res.status(400).json({
                 error: error.message
+            })
+        }
+    }
+
+    static async listarIngredientes(req, res){
+        try{
+            const result = await IngredientesModels.listarIngredientes();
+            
+            return res.status(200).json(result)
+        }catch{
+            return res.status(403).json({
+                error: "Erro de conexão de servidor."
             })
         }
     }

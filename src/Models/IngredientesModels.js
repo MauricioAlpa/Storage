@@ -77,4 +77,15 @@ export class IngredientesModels{
 
         return result.rows[0];
     }
+
+    static async listarIngredientes(){
+        const query = 
+        `
+        SELECT * FROM ingredientes
+        `
+
+        const result = await db.query(query);
+
+        return result.rows
+    }
 }

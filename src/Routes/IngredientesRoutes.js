@@ -11,4 +11,6 @@ IngredientesRouter.patch('/atualizaQuantidade', Validacoes.validaEstoque(), hand
 
 IngredientesRouter.delete('/deletarAlimento/:id', Validacoes.validaDelete(), handleValidation, IngredientesController.deletaIngredienteById);
 
-IngredientesRouter.get('/listarPorNome/:nome', Validacoes.validaLista(), handleValidation, IngredientesController.listarIngredientes);
+IngredientesRouter.get('/listarPorNome/:nome', Validacoes.validaLista(), handleValidation, IngredientesController.listarIngredientesByName);
+
+IngredientesRouter.get('/listarIngredientes', IngredientesController.listarIngredientes)
