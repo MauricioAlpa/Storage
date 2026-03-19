@@ -1,11 +1,13 @@
 import express from "express";
 import "dotenv/config";
 import {IngredientesRouter} from "./Routes/IngredientesRoutes.js"
+import { PratosRouter } from "./Routes/PratosRoutes.js";
 
 const app = express();
 
 app.use(express.json());
 app.use(IngredientesRouter);
+app.use(PratosRouter)
 
 const PORT = process.env.PORT ?? 3000;
 const NODE_ENV = process.env.NODE_ENV ?? "development";

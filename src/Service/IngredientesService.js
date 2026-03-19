@@ -2,7 +2,7 @@ import {IngredientesModels} from "../Models/IngredientesModels.js";
 
 export class IngredientesService{
      
-    static async temIngrediente(dados){
+    static async ingredienteExiste(dados){
 
         const temIngrediente = await IngredientesModels.findByName(dados.nome);
 
@@ -11,10 +11,19 @@ export class IngredientesService{
         }
     }
 
-    static async adicionarEstoque(dados){
-        const temIngrediente = await IngredientesModels.findByName(dados.nome);
+    static async temIngrediente(dados){
+        const temIngrediente = await IngredientesModels.findByName(dados);
 
         if(!temIngrediente){
+            throw new Error("Ingrediente não encontrado")
+        }
+    }
+
+    static async temDeletar(id){
+        
+        const deletado = await IngredientesModels.deletaIngrediente(id);
+
+        if(deletado.rowCount === 0){
             throw new Error("Ingrediente não encontrado")
         }
     }

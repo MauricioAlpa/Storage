@@ -8,7 +8,7 @@ export class IngredientesController {
         const dados = req.body
 
         try{
-            await IngredientesService.temIngrediente(dados)
+            await IngredientesService.ingredienteExiste(dados)
 
             const ingrediente = await IngredientesModels.criarIngrediente(dados)
 
@@ -25,13 +25,14 @@ export class IngredientesController {
         const dados = req.body;
 
         try{
-            await IngredientesService.adicionarEstoque(dados);
+            await IngredientesService.temIngrediente(dados);
 
 
-            await IngredientesModels.addQuantidadeEstoque(dados)
+            const result = await IngredientesModels.addQuantidadeEstoque(dados)
 
             return res.status(200).json({
-                message: "Estoque atualizado"
+                message: "Estoque atualizado",
+                ingrediente: result.rows
             });
 
         }catch(error){
@@ -45,11 +46,9 @@ export class IngredientesController {
         const id = Number(req.params.id);
 
         try{
-            const result = await IngredientesModels.deletaIngrediente(id);
+            await IngredientesService.temDeletar(id)
 
-            if(result.rowCount === 0){
-                throw new Error("Ingrediente não encontrado.")
-            }
+            const result = await IngredientesModels.deletaIngrediente(id)
 
             return res.status(200).json({
                 message: "Ingrediente deletado",
@@ -64,16 +63,13 @@ export class IngredientesController {
     }
 
     static async listarIngredientesByName(req, res){
-        const nome = String(req.params.nome);
+        const nome = req.params.nome.trim();
+
     
         try{
-            const result = await IngredientesModels.listarIngredientesByName(nome)
+            await IngredientesService.temIngrediente(nome)
 
-            console.log(result)
-
-            if(!result){
-                throw new Error("Ingrediente não existe")
-            }
+            const result = await IngredientesModels.findByName(nome)
 
             return res.status(200).json({
                 id: result.id,

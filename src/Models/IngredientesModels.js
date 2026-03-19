@@ -27,7 +27,7 @@ export class IngredientesModels{
     }
 
     static async findByName(nome){
-        const query = `SELECT * FROM ingredientes WHERE nome = $1`;
+        const query = `SELECT * FROM ingredientes WHERE LOWER(nome) = LOWER($1)`;
         const value = [nome];
 
         const result = await db.query(query,value);
@@ -62,20 +62,6 @@ export class IngredientesModels{
         const result = await db.query(query,value)
 
         return result;
-    }
-
-    static async listarIngredientesByName(nome){
-        const query = 
-        `
-        SELECT * FROM ingredientes
-        WHERE nome ILIKE $1
-        `;
-
-        const value = [nome];
-
-        const result = await db.query(query, value);
-
-        return result.rows[0];
     }
 
     static async listarIngredientes(){
