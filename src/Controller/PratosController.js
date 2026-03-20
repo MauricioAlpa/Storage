@@ -19,9 +19,19 @@ export class PratosController{
         }
     }
 
-    static async cadastrarPrato(nome){
+    static async cadastrarPrato(req, res){
+        const nome = req.body.nome
+
         try{
-            const result = await Pratos.cadastrarPrato
+            await PratosService.temPrato(nome)
+
+            const result = await Pratos.cadastrarPratos(nome);
+
+            return res.status(200).json(result)
+        }catch(error){
+            return res.status(400).json({
+                error: error.message
+            })
         }
     }
 }

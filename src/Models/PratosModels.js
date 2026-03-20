@@ -9,17 +9,35 @@ export class Pratos {
 
         const result = await db.query(query);
 
-        return result
+        return result.rows
     }
 
     static async cadastrarPratos(dados){
         const query = 
         `
         INSERT INTO pratos(nome)
-        VALUE($1)
+        VALUES($1)
         RETURNING id, nome
-        `
+        `;
 
-        const value = [dados]
+        const value = [dados];
+
+        const result = await db.query(query, value)
+
+        return result.rows[0];
+    }
+
+    static async findByName(nome){
+        const query = 
+        `
+        SELECT * FROM pratos
+        WHERE nome = $1
+        `;
+
+        const value = [nome]
+
+        const result = await db.query(query, value);
+
+        return result.rows[0]
     }
 }
