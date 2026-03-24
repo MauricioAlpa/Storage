@@ -12,4 +12,12 @@ export class Validacoes{
             .withMessage("Campo nome deve ser uma string")
         ]
     }
+
+    static validaId(){
+        return [
+            param("id")
+            .notEmpty()
+            .withMessage("Id obrigatório.")
+        ]
+    }
 }

@@ -34,4 +34,21 @@ export class PratosController{
             })
         }
     }
+
+    static async deletarPrato(req, res){
+        const id = Number(req.params.id);
+
+        try{
+            const result = await PratosService.deletado(id);
+
+            return res.status(200).json({
+                message: "Prato deletado",
+                prato: result.rows[0]
+            })
+        }catch(error){
+            return res.status(400).json({
+                error: error.message
+            })
+        }
+    }
 }

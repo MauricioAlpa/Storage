@@ -7,4 +7,6 @@ export const PratosRouter = Router();
 
 PratosRouter.get('/listarPratos', PratosController.buscarPratos);
 
-PratosRouter.post('/addPratos', Validacoes.validaCampos(), handleValidation, PratosController.cadastrarPrato)
+PratosRouter.post('/addPratos', Validacoes.validaCampos(), handleValidation, PratosController.cadastrarPrato);
+
+PratosRouter.delete('/deletar/:id', Validacoes.validaId(), handleValidation, PratosController.deletarPrato)

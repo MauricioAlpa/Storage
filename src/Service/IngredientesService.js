@@ -25,6 +25,8 @@ export class IngredientesService{
 
         if(deletado.rowCount === 0){
             throw new Error("Ingrediente não encontrado")
+        }else{
+            return deletado;
         }
     }
 }

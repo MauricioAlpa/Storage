@@ -46,9 +46,8 @@ export class IngredientesController {
         const id = Number(req.params.id);
 
         try{
-            await IngredientesService.temDeletar(id)
-
-            const result = await IngredientesModels.deletaIngrediente(id)
+        
+            const result = await IngredientesService.temDeletar(id);
 
             return res.status(200).json({
                 message: "Ingrediente deletado",

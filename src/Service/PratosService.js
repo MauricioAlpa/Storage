@@ -8,4 +8,15 @@ export class PratosService{
             throw new Error("Prato já cadastrado")
         }
     }
+
+    static async deletado(id){
+                
+        const deletado = await Pratos.deletaPrato(id);
+                
+        if(deletado.rowCount === 0){
+            throw new Error("Prato não encontrado")
+        }else{
+            return deletado;
+        }
+    }
 }

@@ -40,4 +40,14 @@ export class Pratos {
 
         return result.rows[0]
     }
+
+    static async deletaPrato(id){ 
+        const query = `DELETE FROM pratos WHERE id = $1 RETURNING *`;
+
+        const value = [id];
+
+        const result = await db.query(query, value);
+
+        return result
+    }
 }
