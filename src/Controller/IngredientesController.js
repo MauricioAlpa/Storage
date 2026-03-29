@@ -25,14 +25,14 @@ export class IngredientesController {
         const dados = req.body;
 
         try{
-            await IngredientesService.temIngrediente(dados);
+            await IngredientesService.temIngrediente(dados.nome);
 
 
             const result = await IngredientesModels.addQuantidadeEstoque(dados)
 
             return res.status(200).json({
                 message: "Estoque atualizado",
-                ingrediente: result.rows
+                ingrediente: result
             });
 
         }catch(error){

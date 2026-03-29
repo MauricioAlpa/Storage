@@ -20,4 +20,12 @@ export class Validacoes{
             .withMessage("Id obrigatório.")
         ]
     }
+
+    static validaNome(){
+        return [
+            param("nome")
+            .notEmpty()
+            .withMessage("Nome obrigatório.")
+        ]
+    }
 }

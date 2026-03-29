@@ -9,4 +9,6 @@ PratosRouter.get('/listarPratos', PratosController.buscarPratos);
 
 PratosRouter.post('/addPratos', Validacoes.validaCampos(), handleValidation, PratosController.cadastrarPrato);
 
-PratosRouter.delete('/deletar/:id', Validacoes.validaId(), handleValidation, PratosController.deletarPrato)
+PratosRouter.delete('/deletar/:id', Validacoes.validaId(), handleValidation, PratosController.deletarPrato);
+
+PratosRouter.get('/acharPrato/:nome', Validacoes.validaNome(), handleValidation, PratosController.findByName);

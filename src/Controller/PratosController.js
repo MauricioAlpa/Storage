@@ -11,7 +11,7 @@ export class PratosController{
                 throw new Error("Nenhum prato cadastrado.")
             }
 
-            return res.status(200).json({Pratos: result.rows});
+            return res.status(200).json({Pratos: result});
         }catch(error){
             return res.status(400).json({
                 error: error.message
@@ -44,6 +44,22 @@ export class PratosController{
             return res.status(200).json({
                 message: "Prato deletado",
                 prato: result.rows[0]
+            })
+        }catch(error){
+            return res.status(400).json({
+                error: error.message
+            })
+        }
+    }
+
+    static async findByName(req, res){
+        const nome = req.params.nome;
+
+        try{
+            const result = await Pratos.findByName(nome);
+
+            return res.status(200).json({
+                prato: result
             })
         }catch(error){
             return res.status(400).json({
